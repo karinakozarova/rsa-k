@@ -1,0 +1,1542 @@
+Started GET "/" for 127.0.0.1 at 2018-01-01 13:41:01 +0200
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.1.4) lib/active_record/migration.rb:576:in `check_pending!'
+activerecord (5.1.4) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (264.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (105.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRsas (20171219181351)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "rsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" integer, "e" integer, "d" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171219181351"]]
+  [1m[35m (157.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to IntToBigInt (20171219185104)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" integer DEFAULT NULL, "e" integer DEFAULT NULL, "d" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "arsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "rsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "rsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "rsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" integer(8) DEFAULT NULL, "e" integer DEFAULT NULL, "d" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "rsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "arsas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "arsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" integer(8) DEFAULT NULL, "e" integer DEFAULT NULL, "d" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "arsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "rsas"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "rsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "rsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" integer(8) DEFAULT NULL, "e" integer(8) DEFAULT NULL, "d" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "rsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "arsas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "arsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" integer(8) DEFAULT NULL, "e" integer(8) DEFAULT NULL, "d" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "arsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "rsas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "rsas"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "rsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" integer(8) DEFAULT NULL, "e" integer(8) DEFAULT NULL, "d" integer(8) DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "rsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "arsas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "arsas"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171219185104"]]
+  [1m[35m (54.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateMessages (20171219191701)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "messages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171219191701"]]
+  [1m[35m (78.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddForeignKeys (20171219203931)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "messages" ADD "rsa_id" integer[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "messages" ADD "rsas_id" integer[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_messages_on_rsas_id" ON "messages" ("rsas_id")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171219203931"]]
+  [1m[35m (82.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to NedToString (20171219213238)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" integer(8) DEFAULT NULL, "e" integer(8) DEFAULT NULL, "d" integer(8) DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "arsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "rsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "rsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "rsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" varchar(8) DEFAULT NULL, "e" integer(8) DEFAULT NULL, "d" integer(8) DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "rsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "arsas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "arsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" varchar(8) DEFAULT NULL, "e" integer(8) DEFAULT NULL, "d" integer(8) DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "arsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "rsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "rsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "rsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" varchar(8) DEFAULT NULL, "e" varchar(8) DEFAULT NULL, "d" integer(8) DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "rsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "arsas"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "arsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "arsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" varchar(8) DEFAULT NULL, "e" varchar(8) DEFAULT NULL, "d" integer(8) DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "arsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "rsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "rsas"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "rsas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "n" varchar(8) DEFAULT NULL, "e" varchar(8) DEFAULT NULL, "d" varchar(8) DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "rsas" ("id","n","e","d","created_at","updated_at")
+                     SELECT "id","n","e","d","created_at","updated_at" FROM "arsas"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "arsas"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171219213238"]]
+  [1m[35m (114.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-01-01 11:41:18.512651"], ["updated_at", "2018-01-01 11:41:18.512651"]]
+  [1m[35m (111.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_messages_on_rsas_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_messages_on_rsas_id' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2018-01-01 13:41:22 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/2.3.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/2.3.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (9.0ms)
+Completed 200 OK in 51ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/rsas" for 127.0.0.1 at 2018-01-01 13:41:40 +0200
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for RsasController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/rsa" for 127.0.0.1 at 2018-01-01 13:41:44 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/rsa"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-01-01 13:49:45 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/2.3.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/2.3.0/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (3.1ms)
+Completed 200 OK in 13ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/rsas" for 127.0.0.1 at 2018-01-01 13:49:51 +0200
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for RsasController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/rsas" for 127.0.0.1 at 2018-01-01 13:51:20 +0200
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for RsasController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started POST "/rsas" for 127.0.0.1 at 2018-01-01 13:51:25 +0200
+Processing by RsasController#create as */*
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 11:51:25.875513"], ["updated_at", "2018-01-01 11:51:25.875513"]]
+  [1m[35m (227.6ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (41.1ms)
+Completed 200 OK in 527ms (Views: 53.6ms | ActiveRecord: 229.1ms)
+
+
+Started POST "/rsas" for 127.0.0.1 at 2018-01-01 13:51:28 +0200
+Processing by RsasController#create as */*
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "26302749901894131461507138407330193620958313694475570222613585645022378396328158217176409869135932978742330707953133961483485497925107572603643602139652112985336498311514555046631004257985288142160515410599202683218528503607415086630529291203558261099588710415013081919870404659311907426312191813460856275417076632737758754481273842062738540221519667788071650561258998980303911389071861012245586859417423519614095790517635311877001502684292719941168391026539218140952505447436983807562470253905594277208794499279875412262445975673739840961634972766383425012257172143140379241323511135994489311464239659635755883697823"], ["e", "65537"], ["d", "14468780028276932623079998271551349775381359644163431070928519402607714170102788224780303526133627108604906607754679531340176323080062454795519408894770867223619727796945408303494122930628921415582476174794571859143860278675418790730689709281466635196931086243978769493465492139903467882661409998429548645575008558960288017153524296163631930534422416133679645248628966473334831428733104418904013502317620988791470580635699275442720966286511041580017965505153310705414033615747016690345909555139878827999198369736281955007355944458886237205141616893974470383921842825510933839361771119657649323329891325559077353176297"], ["created_at", "2018-01-01 11:51:28.913160"], ["updated_at", "2018-01-01 11:51:28.913160"]]
+  [1m[35m (121.0ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.8ms)
+Completed 200 OK in 150ms (Views: 4.6ms | ActiveRecord: 121.2ms)
+
+
+Started POST "/rsas?n=1&e=2&d=3" for 127.0.0.1 at 2018-01-01 13:52:22 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"1", "e"=>"2", "d"=>"3"}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 175ms (ActiveRecord: 0.0ms)
+
+
+  
+OpenSSL::PKey::RSAError (bad e value):
+  
+app/controllers/rsas_controller.rb:16:in `public_encrypt'
+app/controllers/rsas_controller.rb:16:in `create'
+Started POST "/rsas?n=1&e=232&d=3" for 127.0.0.1 at 2018-01-01 13:52:35 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"1", "e"=>"232", "d"=>"3"}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 97ms (ActiveRecord: 0.0ms)
+
+
+  
+OpenSSL::PKey::RSAError (bad e value):
+  
+app/controllers/rsas_controller.rb:16:in `public_encrypt'
+app/controllers/rsas_controller.rb:16:in `create'
+Started POST "/rsas?n=341&e=232&d=343" for 127.0.0.1 at 2018-01-01 13:52:41 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"341", "e"=>"232", "d"=>"343"}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.0ms)
+
+
+  
+OpenSSL::PKey::RSAError (data too large for key size):
+  
+app/controllers/rsas_controller.rb:16:in `public_encrypt'
+app/controllers/rsas_controller.rb:16:in `create'
+Started POST "/rsas?n=34535545441&e=232&d=343" for 127.0.0.1 at 2018-01-01 13:53:57 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"34535545441", "e"=>"232", "d"=>"343"}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 193ms (ActiveRecord: 0.0ms)
+
+
+  
+OpenSSL::PKey::RSAError (data too large for key size):
+  
+app/controllers/rsas_controller.rb:16:in `public_encrypt'
+app/controllers/rsas_controller.rb:16:in `create'
+Started POST "/rsas?n=34535545444545451&e=232&d=343" for 127.0.0.1 at 2018-01-01 13:54:01 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"34535545444545451", "e"=>"232", "d"=>"343"}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.0ms)
+
+
+  
+OpenSSL::PKey::RSAError (data too large for key size):
+  
+app/controllers/rsas_controller.rb:16:in `public_encrypt'
+app/controllers/rsas_controller.rb:16:in `create'
+Started GET "/rsas?id=1" for 127.0.0.1 at 2018-01-01 13:58:35 +0200
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for RsasController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/rsas/id" for 127.0.0.1 at 2018-01-01 13:59:00 +0200
+Processing by RsasController#show as HTML
+  Parameters: {"id"=>"id"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+Completed 406 Not Acceptable in 11ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/rsas_controller.rb:22:in `show'
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 13:59:03 +0200
+Processing by RsasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.2ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 406 Not Acceptable in 22ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/rsas_controller.rb:22:in `show'
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 13:59:30 +0200
+Processing by RsasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 406 Not Acceptable in 12ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/rsas_controller.rb:22:in `show'
+Started GET "/rsas?id=1" for 127.0.0.1 at 2018-01-01 14:00:58 +0200
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for RsasController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:03:46 +0200
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.2ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (2.3ms)
+Completed 200 OK in 26ms (Views: 6.1ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/rsas/1/encrypt_messages/" for 127.0.0.1 at 2018-01-01 14:05:48 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 106ms (ActiveRecord: 0.4ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/encrypt_messages_controller.rb:14:in `public_encrypt'
+app/controllers/encrypt_messages_controller.rb:14:in `create'
+Started POST "/rsas/1/encrypt_messages?message=%221%22" for 127.0.0.1 at 2018-01-01 14:06:22 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"1\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "JZinXrvK724FjESDT6YdR0yjVKrshUiiMyTZ3Lfy11V85kTV+GJPL3RydmwEj8LnV546o7/8n0m2RyVhTKx2rmbr9LBEu5J16WOxIxQpbSr0kVkzrJXg6Kf1eHhIyEBh3/vRYzCj7AFkEHJgpKElFO5E5JR0p+qDfzYlG2umExx3B+0dTVEXrH+nTjr7pwiNt0sNdc1hwxAXQp16KwSI21k9HDy7uJEoLW5bcEVs6cMNjEhoY2y/Hkfy6T5aZXYFVC6px/ry5DrM1SgXpZDbnfnApEtNy7TUof6CgHhpJEuiaV1v9CCB5ygyKOrNGjpSWXxEospPXnw7rridD9JHIw=="], ["created_at", "2018-01-01 12:06:22.278324"], ["updated_at", "2018-01-01 12:06:22.278324"], ["rsa_id", 1]]
+  [1m[35m (81.6ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.9ms)
+Completed 200 OK in 212ms (Views: 5.8ms | ActiveRecord: 82.6ms)
+
+
+Started POST "/rsas/1/encrypt_messages?message=%221%22" for 127.0.0.1 at 2018-01-01 14:06:32 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"1\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "hOpsJhzX1nClLfJKlPhW6L0NgCgla06xAL0+gqVPxuErQEYDaROdV4PMBeAhTnpQqToyRsuFYN1AXyx+GKEJ5FncvSce4Lx/YWJjXNzQ1zacFNsrlu0OE8qrqLHrCWii/eHbmgYQBNKTruX9ldORNjRFxkDrMTjS9Con/m8meCi/wuGL6GLXwrWX9AA07k1XGDKvTIZSRu1DN5Pr+e2XB9gPQ5k16YzrZvup6jGzjnpz/j9rfa1M+R7OG+i5ovsKYSqEhFbiJI2b5k7hghvopIbhF2iYfcdJbOqRdo2Jv7WtmBXdG5RjJzVfmWihd+hPj16QYY8mRR61mh7Qti9CkA=="], ["created_at", "2018-01-01 12:06:32.942294"], ["updated_at", "2018-01-01 12:06:32.942294"], ["rsa_id", 1]]
+  [1m[35m (98.9ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.8ms)
+Completed 200 OK in 199ms (Views: 4.9ms | ActiveRecord: 99.5ms)
+
+
+Started POST "/rsas/1/encrypt_messages?message=%22test%22" for 127.0.0.1 at 2018-01-01 14:07:07 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"test\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "T3nKUkDTpbWNDA7Y13N7jS9e1sXkXlKYmH2pt63jfufa2usZ2DDKouDXIuk3ml+ejHG+lZizpcaoi24shYizEXBjzD1NfZ3rLXTaBh6HJX+M6rt1cUEq04XTr8zV2uEckC08D4AlAZgTlZfonQPOW1cm3pqJde8eZckQTx0jOhBfbZovKg+y7uq5Ibbn/qUUGEE86eCsOEN9fKXWR/NpZPHHX81ZKstyGv15kL77Ph4hi6+JuGcsNvcqvdCpEyeVnEhJJecbMorytsGS8CVa9yJNF3qNLLod9LaGMfPEBgWK1LOK77UM9geGOYSPZWppMYPGvn+gBPwKrXZLEy7UIg=="], ["created_at", "2018-01-01 12:07:07.420240"], ["updated_at", "2018-01-01 12:07:07.420240"], ["rsa_id", 1]]
+  [1m[35m (121.7ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.8ms)
+Completed 200 OK in 262ms (Views: 4.7ms | ActiveRecord: 122.3ms)
+
+
+Started POST "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:07:47 +0200
+  
+ActionController::RoutingError (No route matches [POST] "/rsas/1/encrypt_messages/1"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:09:18 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.4ms)
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/rsas//encrypt_messages/" for 127.0.0.1 at 2018-01-01 14:11:01 +0200
+  
+ActionController::RoutingError (No route matches [POST] "/rsas/encrypt_messages"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started POST "/rsas/1/encrypt_messages/" for 127.0.0.1 at 2018-01-01 14:11:04 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.1ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/encrypt_messages_controller.rb:14:in `public_encrypt'
+app/controllers/encrypt_messages_controller.rb:14:in `create'
+Started POST "/rsas/1/encrypt_messages/" for 127.0.0.1 at 2018-01-01 14:11:11 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 0.1ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/encrypt_messages_controller.rb:14:in `public_encrypt'
+app/controllers/encrypt_messages_controller.rb:14:in `create'
+Started POST "/rsas/1/encrypt_messages" for 127.0.0.1 at 2018-01-01 14:11:17 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.4ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 126ms (ActiveRecord: 0.4ms)
+
+
+  
+TypeError (no implicit conversion of nil into String):
+  
+app/controllers/encrypt_messages_controller.rb:14:in `public_encrypt'
+app/controllers/encrypt_messages_controller.rb:14:in `create'
+Started POST "/rsas/1/encrypt_messages?message=%221%22" for 127.0.0.1 at 2018-01-01 14:11:28 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"1\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "VIy0zJVhwzVhHQEWM/06siinqhGm5k/NbrLW6lbkJU4wJ2fPsZlZ6QhQ+eLuYMlZD7RgOWqTwoEjh4/tcM6+v26717FDx941w5r81aK1bteHwEBkSVuMTF6ggkTWBDeei2ONSfgR71UnHvb9af+mbx/T14mQI82ALnCECGzI0EwqjnTq7Q1OO7XaAPKc3DfYh0XYF+rL3GEYQuR+0DLlaikV64nyl0XtKP29G0ghojYAHCtuLIlyZ/2hk9QZQlJaLJpQ+8296NnV69RA64BcfUM74xcyQ28VTPR2Fp09a+KLqGvkvj0a2+qFqtaJgVKqVsbY2sHiVRiFoIYn1+MO9Q=="], ["created_at", "2018-01-01 12:11:28.668863"], ["updated_at", "2018-01-01 12:11:28.668863"], ["rsa_id", 1]]
+  [1m[35m (68.9ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.8ms)
+Completed 200 OK in 154ms (Views: 4.8ms | ActiveRecord: 69.5ms)
+
+
+Started GET "/rsas/4/encrypt_messages/4" for 127.0.0.1 at 2018-01-01 14:11:59 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"4", "id"=>"4"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Rsa with 'id'=4):
+  
+app/controllers/encrypt_messages_controller.rb:28:in `set_rsa'
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:12:10 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.4ms)
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:12:47 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.3ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.3ms)
+Completed 200 OK in 21ms (Views: 2.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:12:48 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.4ms)
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:12:50 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.5ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/rsas?n=23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851&e=65537&d=20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409" for 127.0.0.1 at 2018-01-01 14:13:28 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851", "e"=>"65537", "d"=>"20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 12:13:28.785031"], ["updated_at", "2018-01-01 12:13:28.785031"]]
+  [1m[35m (179.3ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.8ms)
+Completed 200 OK in 258ms (Views: 4.6ms | ActiveRecord: 179.6ms)
+
+
+Started POST "/rsas/1/decrypt_messages/" for 127.0.0.1 at 2018-01-01 14:15:28 +0200
+Processing by DecryptMessagesController#create as */*
+  Parameters: {"rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 99ms (ActiveRecord: 0.1ms)
+
+
+  
+NoMethodError (undefined method `unpack' for nil:NilClass):
+  
+app/controllers/decrypt_messages_controller.rb:14:in `create'
+Started POST "/rsas/1/decrypt_messages?message=%222344%22" for 127.0.0.1 at 2018-01-01 14:15:56 +0200
+Processing by DecryptMessagesController#create as */*
+  Parameters: {"message"=>"\"2344\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 0.1ms)
+
+
+  
+OpenSSL::PKey::RSAError (padding check failed):
+  
+app/controllers/decrypt_messages_controller.rb:16:in `private_decrypt'
+app/controllers/decrypt_messages_controller.rb:16:in `create'
+Started POST "/rsas/1/decrypt_messages?message=%222344%22" for 127.0.0.1 at 2018-01-01 14:15:56 +0200
+Processing by DecryptMessagesController#create as */*
+  Parameters: {"message"=>"\"2344\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 54ms (ActiveRecord: 0.1ms)
+
+
+  
+OpenSSL::PKey::RSAError (padding check failed):
+  
+app/controllers/decrypt_messages_controller.rb:16:in `private_decrypt'
+app/controllers/decrypt_messages_controller.rb:16:in `create'
+Started POST "/rsas/1/decrypt_messages?message=%222344%22" for 127.0.0.1 at 2018-01-01 14:16:17 +0200
+Processing by DecryptMessagesController#create as */*
+  Parameters: {"message"=>"\"2344\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.8ms)
+
+
+  
+OpenSSL::PKey::RSAError (padding check failed):
+  
+app/controllers/decrypt_messages_controller.rb:16:in `private_decrypt'
+app/controllers/decrypt_messages_controller.rb:16:in `create'
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:18:06 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.4ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.3ms)
+Completed 200 OK in 20ms (Views: 1.9ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/rsas/1/decrypt_messages?message=%22JZinXrvK724FjESDT6YdR0yjVKrshUiiMyTZ3Lfy11V85kTV+GJPL3RydmwEj8LnV546o7/8n0m2RyVhTKx2rmbr9LBEu5J16WOxIxQpbSr0kVkzrJXg6Kf1eHhIyEBh3/vRYzCj7AFkEHJgpKElFO5E5JR0p+qDfzYlG2umExx3B+0dTVEXrH+nTjr7pwiNt0sNdc1hwxAXQp16KwSI21k9HDy7uJEoLW5bcEVs6cMNjEhoY2y/Hkfy6T5aZXYFVC6px/ry5DrM1SgXpZDbnfnApEtNy7TUof6CgHhpJEuiaV1v9CCB5ygyKOrNGjpSWXxEospPXnw7rridD9JHIw==%22" for 127.0.0.1 at 2018-01-01 14:18:31 +0200
+Processing by DecryptMessagesController#create as */*
+  Parameters: {"message"=>"\"JZinXrvK724FjESDT6YdR0yjVKrshUiiMyTZ3Lfy11V85kTV GJPL3RydmwEj8LnV546o7/8n0m2RyVhTKx2rmbr9LBEu5J16WOxIxQpbSr0kVkzrJXg6Kf1eHhIyEBh3/vRYzCj7AFkEHJgpKElFO5E5JR0p qDfzYlG2umExx3B 0dTVEXrH nTjr7pwiNt0sNdc1hwxAXQp16KwSI21k9HDy7uJEoLW5bcEVs6cMNjEhoY2y/Hkfy6T5aZXYFVC6px/ry5DrM1SgXpZDbnfnApEtNy7TUof6CgHhpJEuiaV1v9CCB5ygyKOrNGjpSWXxEospPXnw7rridD9JHIw==\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 149ms (ActiveRecord: 0.1ms)
+
+
+  
+OpenSSL::PKey::RSAError (padding check failed):
+  
+app/controllers/decrypt_messages_controller.rb:16:in `private_decrypt'
+app/controllers/decrypt_messages_controller.rb:16:in `create'
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:19:13 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.3ms)
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:19:18 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.2ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.4ms)
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:19:19 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.4ms)
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/rsas/1/decrypt_messages?message=%22%20%20%20%20%22message%22:%20%22JZinXrvK724FjESDT6YdR0yjVKrshUiiMyTZ3Lfy11V85kTV+GJPL3RydmwEj8LnV546o7/8n0m2RyVhTKx2rmbr9LBEu5J16WOxIxQpbSr0kVkzrJXg6Kf1eHhIyEBh3/vRYzCj7AFkEHJgpKElFO5E5JR0p+qDfzYlG2umExx3B+0dTVEXrH+nTjr7pwiNt0sNdc1hwxAXQp16KwSI21k9HDy7uJEoLW5bcEVs6cMNjEhoY2y/Hkfy6T5aZXYFVC6px/ry5DrM1SgXpZDbnfnApEtNy7TUof6CgHhpJEuiaV1v9CCB5ygyKOrNGjpSWXxEospPXnw7rridD9JHIw==%22" for 127.0.0.1 at 2018-01-01 14:19:37 +0200
+Processing by DecryptMessagesController#create as */*
+  Parameters: {"message"=>"\"    \"message\": \"JZinXrvK724FjESDT6YdR0yjVKrshUiiMyTZ3Lfy11V85kTV GJPL3RydmwEj8LnV546o7/8n0m2RyVhTKx2rmbr9LBEu5J16WOxIxQpbSr0kVkzrJXg6Kf1eHhIyEBh3/vRYzCj7AFkEHJgpKElFO5E5JR0p qDfzYlG2umExx3B 0dTVEXrH nTjr7pwiNt0sNdc1hwxAXQp16KwSI21k9HDy7uJEoLW5bcEVs6cMNjEhoY2y/Hkfy6T5aZXYFVC6px/ry5DrM1SgXpZDbnfnApEtNy7TUof6CgHhpJEuiaV1v9CCB5ygyKOrNGjpSWXxEospPXnw7rridD9JHIw==\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.1ms)
+
+
+  
+OpenSSL::PKey::RSAError (data greater than mod len):
+  
+app/controllers/decrypt_messages_controller.rb:16:in `private_decrypt'
+app/controllers/decrypt_messages_controller.rb:16:in `create'
+Started POST "/rsas/1/decrypt_messages?message=%22JZinXrvK724FjESDT6YdR0yjVKrshUiiMyTZ3Lfy11V85kTV+GJPL3RydmwEj8LnV546o7/8n0m2RyVhTKx2rmbr9LBEu5J16WOxIxQpbSr0kVkzrJXg6Kf1eHhIyEBh3/vRYzCj7AFkEHJgpKElFO5E5JR0p+qDfzYlG2umExx3B+0dTVEXrH+nTjr7pwiNt0sNdc1hwxAXQp16KwSI21k9HDy7uJEoLW5bcEVs6cMNjEhoY2y/Hkfy6T5aZXYFVC6px/ry5DrM1SgXpZDbnfnApEtNy7TUof6CgHhpJEuiaV1v9CCB5ygyKOrNGjpSWXxEospPXnw7rridD9JHIw==%22" for 127.0.0.1 at 2018-01-01 14:19:56 +0200
+Processing by DecryptMessagesController#create as */*
+  Parameters: {"message"=>"\"JZinXrvK724FjESDT6YdR0yjVKrshUiiMyTZ3Lfy11V85kTV GJPL3RydmwEj8LnV546o7/8n0m2RyVhTKx2rmbr9LBEu5J16WOxIxQpbSr0kVkzrJXg6Kf1eHhIyEBh3/vRYzCj7AFkEHJgpKElFO5E5JR0p qDfzYlG2umExx3B 0dTVEXrH nTjr7pwiNt0sNdc1hwxAXQp16KwSI21k9HDy7uJEoLW5bcEVs6cMNjEhoY2y/Hkfy6T5aZXYFVC6px/ry5DrM1SgXpZDbnfnApEtNy7TUof6CgHhpJEuiaV1v9CCB5ygyKOrNGjpSWXxEospPXnw7rridD9JHIw==\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 129ms (ActiveRecord: 0.1ms)
+
+
+  
+OpenSSL::PKey::RSAError (padding check failed):
+  
+app/controllers/decrypt_messages_controller.rb:16:in `private_decrypt'
+app/controllers/decrypt_messages_controller.rb:16:in `create'
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:20:44 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/rsas?n=23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851&e=65537&d=20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409" for 127.0.0.1 at 2018-01-01 14:21:21 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851", "e"=>"65537", "d"=>"20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 12:21:21.674094"], ["updated_at", "2018-01-01 12:21:21.674094"]]
+  [1m[35m (93.2ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.8ms)
+Completed 200 OK in 216ms (Views: 4.6ms | ActiveRecord: 93.7ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:28:19 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.5ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:28:35 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:28:35 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:28:35 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.4ms)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/rsas/1/encrypt_messages?message=%221%22" for 127.0.0.1 at 2018-01-01 14:28:35 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"1\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "RixHZ9uP359MGbvFL73L2HIg47P+8vmzcNWV39N/6FH7yQ+tBwVSEWoG1IXQyh8C4H+J7R08t0s4QDktgqyjdEfB9rF2O35jpf+k8+JAX3MLhTdSzYbA8dpPj+IvXUtFk8faPka/MdzWOJRcYRHD7+yRleZcGla1fSkGo7QAaSXwNgxqE7SmcOagfS5XqizmEGxmvs5pQtxc5K36t+YGvgDZgbMffXlrrmnHXJ46Yqid1G627fdpbdHYTrAGPG4yoJBstMve3korDRzV1G0xNHrgdiJKZdbRa6fcpUEAabxKGkBiQVwSAUEoyKPI232jJSqqEbzvbSt4C4Ha42ZHFQ=="], ["created_at", "2018-01-01 12:28:35.807098"], ["updated_at", "2018-01-01 12:28:35.807098"], ["rsa_id", 1]]
+  [1m[35m (100.6ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.3ms)
+Completed 200 OK in 165ms (Views: 1.8ms | ActiveRecord: 101.5ms)
+
+
+Started POST "/rsas?n=23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851&e=65537&d=20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409" for 127.0.0.1 at 2018-01-01 14:28:36 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851", "e"=>"65537", "d"=>"20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 12:28:36.070408"], ["updated_at", "2018-01-01 12:28:36.070408"]]
+  [1m[35m (95.4ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.5ms)
+Completed 200 OK in 154ms (Views: 5.1ms | ActiveRecord: 96.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:30:14 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.5ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:30:19 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:30:38 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:32:32 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.2ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (1.6ms)
+Completed 200 OK in 19ms (Views: 4.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:32:32 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.5ms)
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:32:32 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.6ms)
+Completed 200 OK in 16ms (Views: 2.7ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/rsas/1/encrypt_messages?message=%221%22" for 127.0.0.1 at 2018-01-01 14:32:32 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"1\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.2ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "Re9GAh9hIibJUqSS/fVbVmrc78S5zb6SGQMT5il/3QkICgr+e/SYC91LpjH/8u8mW3IS2n0yrZ762djok8BzDrQerjVs1VYrsO+AEEhI5IAB9+h3o7IzNvlhyVYOXH4zsKKMLqq50PJCRPLazPDNX2sx5QwrotmZKIvtVLeeWmIoH8ENX26+HgH61oNXfzZE8x5a8MG9hWGW5l9Uw755WP5g3mwRtZl097QUh8NIPsNfMtltH5ae75fL4spLnlrH/RxAek8iDoQdlb6yf7CvZphKgAtXy4fzA29ZgKjjFkgCBpURvFRV1gA1zOG86mCa+acGa5VYEZRMZV/ZkNtJZA=="], ["created_at", "2018-01-01 12:32:32.318682"], ["updated_at", "2018-01-01 12:32:32.318682"], ["rsa_id", 1]]
+  [1m[35m (78.8ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.5ms)
+Completed 200 OK in 122ms (Views: 2.8ms | ActiveRecord: 79.6ms)
+
+
+Started POST "/rsas?n=23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851&e=65537&d=20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409" for 127.0.0.1 at 2018-01-01 14:32:32 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851", "e"=>"65537", "d"=>"20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 12:32:32.470168"], ["updated_at", "2018-01-01 12:32:32.470168"]]
+  [1m[35m (104.2ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.6ms)
+Completed 200 OK in 124ms (Views: 2.8ms | ActiveRecord: 105.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:32:49 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:33:27 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.2ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 14ms (Views: 2.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:36:13 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 11ms (Views: 1.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:36:17 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas" for 127.0.0.1 at 2018-01-01 14:36:25 +0200
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for RsasController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.4) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:36:35 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/rsas" for 127.0.0.1 at 2018-01-01 14:36:45 +0200
+Processing by RsasController#create as */*
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "24858381616465812295346226671718567950407961267969814111762407184863082420545036380731393953645095579694955151106455937120656453659753445195086903534856900035943434396143693557164196340236892374499180235212626002393634455834806689798211958389176609134545392400345894220008291582237445091402965809128189701269349493632807711374133982879190994138111140944392337731889319086876565433767450097065421952831162563738227501046515220123232713449827925937941841740498161249051000475030395817864514978437126279943917113850338664532578998848465344576883019479785211441190429909595182642081375883037399213059344938724684684125769"], ["e", "65537"], ["d", "16079792664705970377597579799108370098137612372141604431694214379478777683662140886649464941588362862352689835068068214021941636632710191222596687391140707741027969152627059538411306215598251040361074625194452814737832758383889405993798915909980072188851836672839212867064581916257869749299570159549130201350354220998789135366018048274355110001742960288007057584394885215445070239311549524682347827757088755013852348971746240087205284345421243062751523795873469785489270495134480470181915160068547932694808649676781595292923781621500308832583799398898372397092581832226446091173118154584985306943169480723384533340289"], ["created_at", "2018-01-01 12:36:45.360653"], ["updated_at", "2018-01-01 12:36:45.360653"]]
+  [1m[35m (86.2ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.9ms)
+Completed 200 OK in 177ms (Views: 4.9ms | ActiveRecord: 86.8ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:42:45 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 12ms (Views: 1.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:42:46 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.5ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:42:48 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.3ms)
+Completed 200 OK in 11ms (Views: 1.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/rsas" for 127.0.0.1 at 2018-01-01 14:42:50 +0200
+Processing by RsasController#create as */*
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "26696237030708870817947343420171066960413596868072588289335234256434125282659500226735026932433980715411536979360999517741640617930624458298004565219568749156238406376543653390019572606117001571724148190783875377436265166126943088998339182198858559017248888246555787000565018457432684698138767676255431430605674352866580725883620758933612413361857724434561317769701527198925529348023418198857043553352365860005054963959864522331988388874305681638968698576840015628174075051898703577866010190317441693430340092977595910816859914137609557429038881702760981233160436751325035989005494410483268976517749893351084482843151"], ["e", "65537"], ["d", "9632104320126675913776689236818362899521490326722987361179500880840461516910547360443359428175441475756003531043077873514485467012337243708357354611622787777109317746917790378876097682900386333902821430936349194727526833975276504607393202347898278629199798762196288194689418594754921073167665600694812573173841452090591021531128793388327171993102914033377232614221318573694474248464966303185943048686053221227012698972711363757623756419372476235712881811611106438020276177618994846328245350824823369986687937475839281520456672750536133782275005667841919188938059981746228776611164112771298812030741576425483525001809"], ["created_at", "2018-01-01 12:42:51.036269"], ["updated_at", "2018-01-01 12:42:51.036269"]]
+  [1m[35m (114.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.8ms)
+Completed 200 OK in 288ms (Views: 4.4ms | ActiveRecord: 114.6ms)
+
+
+Started POST "/rsas?n=23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851&e=65537&d=20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409" for 127.0.0.1 at 2018-01-01 14:42:53 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851", "e"=>"65537", "d"=>"20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 12:42:53.463825"], ["updated_at", "2018-01-01 12:42:53.463825"]]
+  [1m[35m (105.2ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.8ms)
+Completed 200 OK in 280ms (Views: 4.4ms | ActiveRecord: 105.7ms)
+
+
+Started POST "/rsas/1/encrypt_messages?message=%221%22" for 127.0.0.1 at 2018-01-01 14:42:55 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"1\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "u0Oz0k2A9f6O/rcoyCvccSNJV8XQoqePRMAKvZPWv5NtpiChGJbE6kUxH2eRrlxbxWAQ1mVT2c2fBikt15pKRjHoumh7J8yjkVJ7OedsrP0yrDOizruq+2VZWLQfP1/Q4TKWdKb4rts1L5xQCqeoaJzo956tBVrGIZOUgwNkpxgeQUlgN5wEUyUTeM3VvVrUAxU0vhxkUVnq1YdgRF1hzxHk9ay6fiSK/u4Ox8+z5jFB4yXtOXg5/afnN9TQd4J0V1tm26MI/mIiJL2wyF1+CSvm40cXqZPq7hbVhzOR5qfOijz69qCqT7AIU0lej/57C40RuygOHm4XbQenr188Ig=="], ["created_at", "2018-01-01 12:42:55.734819"], ["updated_at", "2018-01-01 12:42:55.734819"], ["rsa_id", 1]]
+  [1m[35m (112.3ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.7ms)
+Completed 200 OK in 182ms (Views: 4.4ms | ActiveRecord: 112.9ms)
+
+
+Started POST "/rsas?n=23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851&e=65537&d=20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409" for 127.0.0.1 at 2018-01-01 14:43:01 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851", "e"=>"65537", "d"=>"20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 12:43:01.857779"], ["updated_at", "2018-01-01 12:43:01.857779"]]
+  [1m[35m (99.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.8ms)
+Completed 200 OK in 243ms (Views: 4.5ms | ActiveRecord: 99.6ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:49:26 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 9ms (Views: 1.7ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/rsas" for 127.0.0.1 at 2018-01-01 14:49:31 +0200
+Processing by RsasController#create as */*
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "25049025459367244415923090085340684951345482047285954274466160434576625733667740506919419635396562355598031133872512015330760261330390516544546847455425176540605007927494500005017748608637024897554442232263684375687656600991464437652404874599319530727878350110436351537133919318822673029969253664049440768968348625598808032302534042394836900677271280426291630204865560544678403865757125647825485020252590963983742045015022487600678604471098268116902203199832543521136224921179439482064394389018349035486200555587701906306480227024176080642189939538152288301816419762474748710954597795006504932617830857211719398458211"], ["e", "65537"], ["d", "23008777997595995339947725712916732431848370748807042760098698323101122915926336432489160972141502620575337232830177621967689045452617280398327290995455089530614475368528333701604642392714653734651874024444840864428051935900104790915622031005453963872126414060731463542486302532520653886066177904422117046112980959404500935481637740538405176446729002311368139142084577429504470367321158895977438345863144990489315185547619617911978929243594741854898052512897712564341579550868590206515098442949849733326697876422103893104274266388380724771988954071952542434577874011608500559705705948916189256667454401797335907098337"], ["created_at", "2018-01-01 12:49:31.116697"], ["updated_at", "2018-01-01 12:49:31.116697"]]
+  [1m[35m (107.2ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.8ms)
+Completed 200 OK in 190ms (Views: 4.3ms | ActiveRecord: 107.6ms)
+
+
+Started POST "/rsas" for 127.0.0.1 at 2018-01-01 14:49:51 +0200
+Processing by RsasController#create as */*
+Can't verify CSRF token authenticity.
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23041345613053916577885630175231181193856378193931039464714114962388498752134191834612321337796627642348634526362161340833656265840283839301841440377738995710508389406915915290587377213903343267872188278130298095019865675965922067030404128623467870203908380670916095445246674325566508148790172762773005285583004562914405411817644857134908278211707589659796236020223967744798984904551783896147290260429598206568465633013274818056965891076469339299712405028194637049297547815132143408272956229628122330407171499501308998261775545115312173589446042187473566664279075921872178812025219619865673396444572563641678565224691"], ["e", "65537"], ["d", "14518048213153614464610971091993780554787452601434126427146568552983363099785301701611016636754412650306613273900225680278087215490618747579691478690790760774367661506770004821848957911880688113638313361263294467793007510617464727344149230013236526423244772745545405577246687666508131093827019760836603449392740682370400903774306229433531751251147144637526269219797438211964689400325791060828741454120644627097962995151815333713836776441256786735283763409515677520933178630776169579792350882609739369332166789887510336815761965409126705577027747648935100986293931352698757248875892664521019929439908874393644943657281"], ["created_at", "2018-01-01 12:49:51.660355"], ["updated_at", "2018-01-01 12:49:51.660355"]]
+  [1m[35m (90.6ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.9ms)
+Completed 200 OK in 196ms (Views: 5.3ms | ActiveRecord: 91.7ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:49:54 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.2ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:49:57 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.2ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.4ms)
+Completed 200 OK in 13ms (Views: 1.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/rsas/1/encrypt_messages?message=%221%22" for 127.0.0.1 at 2018-01-01 14:50:00 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"1\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "hPRxvUafwyURo/Gk6KHPKZL7WaTNF6ug5i4k91mcd/XX2V8JVx2ZX1/7FsjEFbuPxULpokadNR0LUKsRGKp5QyiTTSWn3KDGAL7y2v1/gFD3TJws1ETxOt5ZqDI+H1t0Qbz8eyLIzpLcZ7YiLi6oVTe7eMDsIouJeKOXhJWM7hWtX/pPRCKSy3OITutJQNzIVx7Hc2ZqfZx+LX+LWTbggt+QxxgDBc5LkrxCWmLX0WwLhm2v6FfALfZz+FYkXmcc9BpNpd+NFsL4fGQCSuEvg8ukERDSSFxQSFbH+fxbmsdRX3uBmfaMOJ47SNDN4wkCAtTYCD74ZY2+ckRgqFTWQA=="], ["created_at", "2018-01-01 12:50:00.836188"], ["updated_at", "2018-01-01 12:50:00.836188"], ["rsa_id", 1]]
+  [1m[35m (72.4ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.4ms)
+Completed 200 OK in 140ms (Views: 1.7ms | ActiveRecord: 72.8ms)
+
+
+Started POST "/rsas?n=23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851&e=65537&d=20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409" for 127.0.0.1 at 2018-01-01 14:50:03 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851", "e"=>"65537", "d"=>"20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 12:50:03.384257"], ["updated_at", "2018-01-01 12:50:03.384257"]]
+  [1m[35m (91.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.5ms)
+Completed 200 OK in 184ms (Views: 2.4ms | ActiveRecord: 92.0ms)
+
+
+Started POST "/rsas/1/encrypt_messages?message=%221%22" for 127.0.0.1 at 2018-01-01 14:50:27 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"1\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "IWUh4eCWdndu3c6zRPFc53VfOydIWdRLEMMJ4gk/nCWZ/p+xqLmQrNLM7B2EiW4p5OREyFIjvZ0GO7svGUhhV14q4fw0rmEhK8Un+AuSevopo3vZ3U4T3eZG+HznlOxsG2wJACCEdo/yUSdmc2r/qry8hYDO6HycxQouXGSrksCNvcsJk4QKHeKqifsA4ktYdA9uhqGwdCjqGGHoMf6Grd2p1An/KRu2k2YuXNeGNVzTKSODw5wtHQYhArrBhQ9QBAzqJhd5CST1+RPk1ywCAsNQIwqYDvmvSy4mmMEJ/Zcuv5Chp/cGhOr7BlCt9I8k5jBDbTUyZE9ei1ToHWwaQw=="], ["created_at", "2018-01-01 12:50:27.817080"], ["updated_at", "2018-01-01 12:50:27.817080"], ["rsa_id", 1]]
+  [1m[35m (512.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.9ms)
+Completed 200 OK in 598ms (Views: 5.5ms | ActiveRecord: 513.8ms)
+
+
+Started POST "/rsas?n=23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851&e=65537&d=20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409" for 127.0.0.1 at 2018-01-01 14:50:32 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851", "e"=>"65537", "d"=>"20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 12:50:32.032055"], ["updated_at", "2018-01-01 12:50:32.032055"]]
+  [1m[35m (105.8ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (1.6ms)
+Completed 200 OK in 146ms (Views: 7.4ms | ActiveRecord: 106.1ms)
+
+
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:50:34 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.3ms)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:50:37 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/rsas" for 127.0.0.1 at 2018-01-01 14:50:39 +0200
+Processing by RsasController#create as */*
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "22462329202560159848220366591560056384435087582864837983033661809927263358351655831572160482995108366097958329646618447771895634974061542169067005352922113164748320796594405619678472105945546017050288616915665145881623872463612128174174462475768046802236878802884379227300524520308175589764776688844498428595024833574482253079099113370649093373580877190375820662661575999524710667520305681353878134567564719771533507033505550629879822403597026864642127623861985591556318751489110560054682216488668930949636982588867567669193855183803602117291714565074143902336817425248849320392293650936823490837284155609931346706641"], ["e", "65537"], ["d", "12816178279007767477981966949329465620690315851901443256474628317722968075420654996566486060403071351045988614377771390474609662916903172960738552743668715039892487595511766015176726237966672295276888509579740708301441345545750466283426242814843440714040063003742246249392686778276143397288162331598369314134649839237526308680352830361735667117054737243705035478913993618092579262612223726048056982658836487380449641474966592211190134385723274579872689930881775749548209211814478968405636306009031982717097735024400368778919084844837623208540481664396765037927412745843101648046970295532118967673116575175646386605221"], ["created_at", "2018-01-01 12:50:40.073581"], ["updated_at", "2018-01-01 12:50:40.073581"]]
+  [1m[35m (93.3ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.9ms)
+Completed 200 OK in 206ms (Views: 4.8ms | ActiveRecord: 93.8ms)
+
+
+Started POST "/rsas" for 127.0.0.1 at 2018-01-01 14:50:58 +0200
+Processing by RsasController#create as */*
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "25239423772748492867030037350145932828782733776877992637704531804532322210515841163793040311268045867664368006906271760520978786348240249007971724784196810768475733035252835868311739400166197398593578905404453667781672953105741681656758108546206993419328427942880220903270832021525661337582692965667947739881590916743544011155147446689900236307518608298214580815501386165081355618169085443830856199683982765786314107091994815646488044000826809801931288500178149570810438129927595761967220165145951264381284032035955207431829030332529336567875781191772070890810303098298334444631579501152760975399501080035745586179821"], ["e", "65537"], ["d", "22823968901413543948678382647304556343711319060785117318057876884746144556604991479197926881720260896091196880072328545512852400520751001075078875586850542292044407255966237663235961907790251137947242837310144599555683775055492023794005970718692608221256683736435849853248483448368376934736687651407768478936534360961655179014138527308356776457599085810784507872674697559088239273042467724961267713747682993234560385705625011874136658674818301206239299258781696373719404863959813876156573325089236105212358134358720095942975205198833216523581738984790289630275267302097642577771181772032381351754826030022998910057153"], ["created_at", "2018-01-01 12:50:58.971230"], ["updated_at", "2018-01-01 12:50:58.971230"]]
+  [1m[35m (270.8ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.9ms)
+Completed 200 OK in 326ms (Views: 5.2ms | ActiveRecord: 271.7ms)
+
+
+Started POST "/rsas" for 127.0.0.1 at 2018-01-01 14:50:59 +0200
+Processing by RsasController#create as */*
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "29790295179019848021069520719749751619601956219643625043592347543223457420611549462857895173421346387431077209898939289795754863487304991667210287925564583607653456538519404029810752307241521170342465861269214023899318797002553607817377609810469912549722023042598571109611660221396730018051852845017510344125318594433866281165467211485007695005763610055352708843523405219400991052772873607443496813329463228715975402953656920367954816408682030376239066972676296456923941716099330024735039812426889704748414818419554774272904235423277498118633757594375121435036815747944880157385027441513288914411256446915720853069723"], ["e", "65537"], ["d", "16718148013933670909057721631317822219774178674676486343260798484706586210425746947441148154222251533993432545018433680812336056337635080771599664000707078757127828219634788910270681586096951449166509787015280262828525047453452540426252820715310022028262298937756272744257553004909445554937349829667195827495497074968603255583974897465730093371193296312389998298097040407647079468953558135215531447188644145954920396026110800944593735039153181286578978811143547526356597116355277164268589793174210246741642040115581855743150830069307553159158893933842231363592669964432127336692956086377108013957728668449385139029249"], ["created_at", "2018-01-01 12:50:59.571003"], ["updated_at", "2018-01-01 12:50:59.571003"]]
+  [1m[35m (137.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (1.1ms)
+Completed 200 OK in 256ms (Views: 5.1ms | ActiveRecord: 137.8ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:51:02 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.2ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.6ms)
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:51:02 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:51:03 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1" for 127.0.0.1 at 2018-01-01 14:51:03 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/16" for 127.0.0.1 at 2018-01-01 14:51:08 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"16"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/15" for 127.0.0.1 at 2018-01-01 14:51:13 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"15"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/17" for 127.0.0.1 at 2018-01-01 14:51:15 +0200
+Processing by RsasController#show as */*
+  Parameters: {"id"=>"17"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  Rendering rsas/show.json.jbuilder
+  Rendered rsas/show.json.jbuilder (0.4ms)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/rsas/1/encrypt_messages/15" for 127.0.0.1 at 2018-01-01 14:51:20 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"15"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 15], ["LIMIT", 1]]
+Completed 404 Not Found in 9ms (ActiveRecord: 0.7ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Message with 'id'=15 [WHERE "messages"."rsa_id" = ?]):
+  
+app/controllers/encrypt_messages_controller.rb:33:in `set_message'
+Started GET "/rsas/1/encrypt_messages/1" for 127.0.0.1 at 2018-01-01 14:51:22 +0200
+Processing by EncryptMessagesController#show as */*
+  Parameters: {"rsa_id"=>"1", "id"=>"1"}
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.1ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."rsa_id" = ? AND "messages"."id" = ? LIMIT ?[0m  [["rsa_id", 1], ["id", 1], ["LIMIT", 1]]
+  Rendering encrypt_messages/show.json.jbuilder
+  Rendered encrypt_messages/show.json.jbuilder (0.5ms)
+Completed 200 OK in 8ms (Views: 2.5ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/rsas/1/encrypt_messages?message=%221%22" for 127.0.0.1 at 2018-01-01 14:51:25 +0200
+Processing by EncryptMessagesController#create as */*
+  Parameters: {"message"=>"\"1\"", "rsa_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mRsa Load (0.1ms)[0m  [1m[34mSELECT  "rsas".* FROM "rsas" WHERE "rsas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "messages" ("content", "created_at", "updated_at", "rsa_id") VALUES (?, ?, ?, ?)[0m  [["content", "PaVIAb/OjqzaIsL2v+rbfusmMsFC0sQuTIbAnQ/XwgQuWgfMdOjXpYWI2J5U9Y3fBjv67ByMry/AcHO8g5U27xGvoXKjDfx6xVk8GJ1oL7UE8LNkyDhcIet5WnDF3xeqDE26cWycVh6OceJOLGDWSl5X5uYHhqI5pSvVjZ/uDr9yHnJnIH5GN3ZNtCh/5I5erHCTB97ZS17w9DbKeGJbwn8yXGO/m/bU58A+2XETJ3Z8qQ2znmcDIa+jivElfItCFwayo8LRmCdx8bblCuDMg+wj5QcuX3INfGuVm2qQgtBAZC3TGm89VYAMde49xTOt8ojqfmKU/+xTFu/bfBE7Dg=="], ["created_at", "2018-01-01 12:51:25.411884"], ["updated_at", "2018-01-01 12:51:25.411884"], ["rsa_id", 1]]
+  [1m[35m (131.4ms)[0m  [1m[36mcommit transaction[0m
+  Rendering encrypt_messages/create.json.jbuilder
+  Rendered encrypt_messages/create.json.jbuilder (0.9ms)
+Completed 200 OK in 207ms (Views: 5.0ms | ActiveRecord: 131.7ms)
+
+
+Started POST "/rsas?n=23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851&e=65537&d=20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409" for 127.0.0.1 at 2018-01-01 14:51:28 +0200
+Processing by RsasController#create as */*
+  Parameters: {"n"=>"23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851", "e"=>"65537", "d"=>"20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rsas" ("n", "e", "d", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["n", "23950581867557019531245018715357501928664067708781622603185264027223501854166079452618875362397536389034858204563619962725586388350120897329428854914690802171335372889071706307485514381707718868272622185928537336331367524169934346335739017983158383029046210202654128747772741472383287789646058656822579428266621396037259634372842631078044291301534758287948912591517872496432758379872933263164910703660860712621350802887628077232282478645927668899279668867402533958290003450686439826326969874975566396130376409170159302284017712218916823709483207155228018791589105136211736190199232020442227695889895307385523456321851"], ["e", "65537"], ["d", "20494874371949665262855362536825977168033470881733710380536686023326078512649158517819234160834585626950636784871635429293583933427882418223777402268501379015985764484062901283703787662550171381839219445642283021175815525931520943541123027717373472674244175265499583354499643171227354967898143270721379936777742146692772321097814880585996805098127694629369666641255899895154492028254099647520624739715178799609097039939372788922413552353704984692538992345138632591901124563553315478193776572921980693844873995358771633838916393543066092530689458520793747232123622827383713684829059305349246898005897946072231987568409"], ["created_at", "2018-01-01 12:51:28.504185"], ["updated_at", "2018-01-01 12:51:28.504185"]]
+  [1m[35m (105.9ms)[0m  [1m[36mcommit transaction[0m
+  Rendering rsas/create.json.jbuilder
+  Rendered rsas/create.json.jbuilder (0.8ms)
+Completed 200 OK in 198ms (Views: 4.6ms | ActiveRecord: 106.4ms)
+
+
