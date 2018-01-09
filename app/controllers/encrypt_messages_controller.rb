@@ -13,7 +13,7 @@ class EncryptMessagesController < ApplicationController
     respond_to :json
   end
 
-  def set_ned(key)
+  def set_ned key
     key.n = @rsa.n.to_i
     key.e = @rsa.e.to_i
     key.d = @rsa.d.to_i
