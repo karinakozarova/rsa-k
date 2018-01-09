@@ -5,22 +5,30 @@ class RsasController < ApplicationController
 
   def create
     key = OpenSSL::PKey::RSA.new 2048
-    if params[:n] && params[:e] && params[:d] then set_ned key end
-    @rsa = Rsa.create(n: key.params["n"], e: key.params["e"], d: key.params["d"])
+    if params_ok then write_ned key end
+    @rsa = create_rsa
     respond_to :json
   end
 
-  def set_ned key
-      key.n = params[:n].to_i
-      key.e = params[:e].to_i
-      key.d = params[:d].to_i
+  def write_ned(key)
+    key.n = params[:n].to_i
+    key.e = params[:e].to_i
+    key.d = params[:d].to_i
   end
 
   def show
     respond_to :json
   end
 
+  def create_rsa
+    Rsa.create(n: key.params['n'], e: key.params['e'], d: key.params['d'])
+  end
+
   def set_rsa
     @rsa = Rsa.find_by(id: params[:id])
+  end
+
+  def params_ok
+    params[:n] && params[:e] && params[:d]
   end
 end
