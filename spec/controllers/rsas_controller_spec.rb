@@ -12,12 +12,13 @@ RSpec.describe RsasController, type: :controller do
 	describe "POST /rsas", :type => :request do
 		it  do
 			
-		end		
+		end	
+
 	end
 
-	describe "GET /rsas/:id" , :type => :request do
+	describe "GET /rsas/:id" , :type => :request, format: :json do
 		it  do
-			
+			#expect(response).to include("id") 
 		end
 	end
 

@@ -1,17 +1,6 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/kari/ELSYS/GitHub/rsa-k/spec/controllers/decrypt_controller_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
       "/home/kari/ELSYS/GitHub/rsa-k/spec/rails_helper.rb": [
         null,
         1,
@@ -315,6 +304,17 @@
         null,
         null
       ],
+      "/home/kari/ELSYS/GitHub/rsa-k/spec/controllers/decrypt_controller_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
       "/home/kari/ELSYS/GitHub/rsa-k/app/controllers/decrypt_messages_controller.rb": [
         1,
         null,
@@ -435,6 +435,7 @@
         null,
         null,
         null,
+        null,
         1,
         1,
         null,
@@ -470,17 +471,27 @@
         1,
         0,
         null,
-        null,
+        null
+      ],
+      "/home/kari/ELSYS/GitHub/rsa-k/spec/models/rsa_spec.rb": [
         1,
-        0,
-        null,
-        null,
         1,
-        0,
+        1,
         null,
+        null,
+        null
+      ],
+      "/home/kari/ELSYS/GitHub/rsa-k/app/models/rsa.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/kari/ELSYS/GitHub/rsa-k/app/models/application_record.rb": [
+        1,
+        1,
         null
       ]
     },
-    "timestamp": 1515499161
+    "timestamp": 1515583902
   }
 }
