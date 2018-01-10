@@ -18,9 +18,11 @@ RSpec.describe RsasController, type: :controller do
 
 	describe "GET /rsas/:id" , :type => :request, format: :json do
 		it  do
-			#expect(response).to include("id") 
 		end
 	end
 
-
+	it "shows an rsa" do
+	#	get :show, params: {id:1} # get zaqvka kum url /rsas/1
+	#	expect(response).to render_template
+	end
 end
