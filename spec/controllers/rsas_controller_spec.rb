@@ -15,7 +15,7 @@ RSpec.describe RsasController do
 	      expect(response.content_type).to eq 'application/json'
 	    end
 
-	    it "should return key id as JSON" do
+	    it 'should return key id as JSON' do
 	      subject
 	      expect(response.content_type).to eq 'application/json'
 	    end
@@ -30,7 +30,7 @@ RSpec.describe RsasController do
 	describe 'GET' do
 		
 		subject do
-			get :show, params: { id: "1" }, format: :json
+			get :show, params: { id: '1' }, format: :json
 	    end
 
 		it 'should return json' do
