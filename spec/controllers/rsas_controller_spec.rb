@@ -1,28 +1,42 @@
-require "rails_helper"
+require 'spec_helper'
+require 'rails_helper'
 
-RSpec.describe RsasController, type: :controller do
+RSpec.describe RsasController do
+  	describe 'POST' do
 
-	describe "POST /rsas" , :type => :request do
-		it  do
-			
-		end
+	    subject do
+	      post :create, format: :json      
+	    end
 
-	end
+	    it 'should generate new key and return its id' do
+	      old_count = Rsa.count
+	      subject
+	      expect(Rsa.count).to eq old_count + 1
+	      expect(response.content_type).to eq 'application/json'
+	    end
 
-	describe "POST /rsas", :type => :request do
-		it  do
-			
-		end	
+	    it "should return key id as JSON" do
+	      subject
+	      expect(response.content_type).to eq 'application/json'
+	    end
 
-	end
+	    it 'should return json' do
+	      subject
+	      expect(response.content_type).to eq 'application/json'
+	    end
 
-	describe "GET /rsas/:id" , :type => :request, format: :json do
-		it  do
-		end
-	end
+  	end
 
-	it "shows an rsa" do
-	#	get :show, params: {id:1} # get zaqvka kum url /rsas/1
-	#	expect(response).to render_template
+	describe 'GET' do
+		
+		subject do
+			get :show, params: { id: "1" }, format: :json
+	    end
+
+		it 'should return json' do
+	      subject
+	      expect(response.content_type).to eq 'application/json'
+	    end
+
 	end
 end
