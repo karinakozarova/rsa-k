@@ -5,7 +5,7 @@ class DecryptMessagesController < ApplicationController
 
   def create
     key = OpenSSL::PKey::RSA.new 2048
-    set_ned key
+    set_ned(key)
     decoded = decode
     @decrypted = key.private_decrypt(decoded)
     respond_to :json
@@ -13,7 +13,7 @@ class DecryptMessagesController < ApplicationController
 
   private
 
-  def set_ned key
+  def set_ned(key)
     key.n = @rsa.n.to_i
     key.e = @rsa.e.to_i
     key.d = @rsa.d.to_i
@@ -21,7 +21,7 @@ class DecryptMessagesController < ApplicationController
 
   def decode
     decoded = Base64.decode64(params[:message])
-    #puts decoded
+    # puts decoded
     decoded
   end
 

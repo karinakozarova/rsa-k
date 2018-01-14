@@ -1,4 +1,4 @@
-require "openssl"
+require 'openssl'
 
 class EncryptMessagesController < ApplicationController
   before_action :set_rsa
@@ -6,14 +6,14 @@ class EncryptMessagesController < ApplicationController
 
   def create
     key = OpenSSL::PKey::RSA.new 2048
-    set_ned key
+    set_ned(key)
     encrypted = key.public_encrypt(params[:message])
     encoded = Base64.strict_encode64(encrypted)
     @message = @rsa.messages.create(content: encoded)
     respond_to :json
   end
 
-  def set_ned key
+  def set_ned(key)
     key.n = @rsa.n.to_i
     key.e = @rsa.e.to_i
     key.d = @rsa.d.to_i
