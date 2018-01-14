@@ -1,4 +1,4 @@
-require 'openssl'
+require "openssl"
 
 class RsasController < ApplicationController
   before_action :set_rsa, only: %i[show edit update destroy]

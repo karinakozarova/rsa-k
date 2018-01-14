@@ -1,4 +1,4 @@
-require 'openssl'
+require "openssl"
 
 class EncryptMessagesController < ApplicationController
   before_action :set_rsa

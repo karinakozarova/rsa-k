@@ -1,42 +1,66 @@
-require 'spec_helper'
-require 'rails_helper'
+require "spec_helper"
+require "rails_helper"
+require "rubygems"
+require "json"
 
 RSpec.describe RsasController do
-  	describe 'POST' do
+  describe "POST" do
 
-	    subject do
-	      post :create, format: :json      
-	    end
+    subject do
+      post :create, format: :json
+    end
 
-	    it 'should generate new key and return its id' do
-	      old_count = Rsa.count
-	      subject
-	      expect(Rsa.count).to eq old_count + 1
-	      expect(response.content_type).to eq 'application/json'
-	    end
+    it "should generate new key and return its id" do
+      old_count = Rsa.count
+      subject
+      expect(Rsa.count).to eq old_count + 1
+      expect(response.content_type).to eq "application/json"
+    end
 
-	    it 'should return key id as JSON' do
-	      subject
-	      expect(response.content_type).to eq 'application/json'
-	    end
+    it "should return key id as JSON" do
+      subject
+      expect(response.content_type).to eq "application/json"
+    end
 
-	    it 'should return json' do
-	      subject
-	      expect(response.content_type).to eq 'application/json'
-	    end
+    it "should return json" do
+      subject
+      expect(response.content_type).to eq "application/json"
+    end
 
-  	end
+    it "is okay 200" do
+      subject
+      (expect(response.status).to eq(200))
+    end
 
-	describe 'GET' do
-		
-		subject do
-			get :show, params: { id: '1' }, format: :json
-	    end
+    it 'should generate new key with the given params and return its id' do
+      old_count = Rsa.count
 
-		it 'should return json' do
-	      subject
-	      expect(response.content_type).to eq 'application/json'
-	    end
+      n = 26247379921551010554225217946136663249304307378748086961821215510428001511121380116667564686281621254654018194610373642996671087747088144292874491426154127401939886546337703065853410423834153495851089420832140117683265119010670620472750588772446299609206051780150578471893036775250433946808020898074188538931134181532821721266884670451281334798180296975992550596679166221751767356724905290373698013615543280436021811494239573736575011634298635443892347124123528018187390739048209012495299724722068991882491917084788201164283392968474006101656184100308986964015456213404885069716772520440579093957428301538952039493571
+      e = 65537
+      d = 5602153750441056740963155906290486984928645675174759913056062416037763174047726705097058071497128616050481506724596892110371777399122159427021810367716617088031724567956601469172490425387065918488259133292643483317111135461209097748948460194225839433199173784285919277123453902561958436424471616373373045494364532305785098669870680496731745504118233326477530179929841708642565854063767213285633512194922659976472089276650635826064207128393930917938041854920686797274767650703281234034248599502750286079020270997718397892301454319259730994594109163842744013138701231229797700686454177042026735702385040317440443895329
 
-	end
+      post :create, params: { n: n, e: e, d: d }, format: :json
+      expect(Rsa.count).to eq old_count + 1
+      
+    end
+  end
+
+  describe "GET" do
+
+    subject do
+      get :show, params: { id: "1" }, format: :json
+    end
+
+    it "should return json" do
+      subject
+      expect(response.content_type).to eq "application/json"
+    end
+
+    it "is okay 200" do
+      subject
+      (expect(response.status).to eq(200))
+    end
+
+  end
+
 end

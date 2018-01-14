@@ -24,6 +24,11 @@ RSpec.describe EncryptMessagesController do
         subject
         expect(response.content_type).to eq 'application/json'
       end
+
+      it "is okay 200" do
+        subject
+        (expect(response.status).to eq(200))
+      end
     end
 
     describe 'GET /rsas/:id/encrypt_messages/:id' do
@@ -41,6 +46,11 @@ RSpec.describe EncryptMessagesController do
       it 'should return json' do
         subject
         expect(response.content_type).to eq 'application/json'
+      end
+
+      it "is okay 200" do
+        subject
+        (expect(response.status).to eq(200))
       end
 
     end
