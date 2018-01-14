@@ -29,7 +29,7 @@ RSpec.describe RsasController do
 
     it 'is okay 200' do
       subject
-      (expect(response.status).to eq(200))
+      expect(response.status).to eq(200)
     end
 
     it 'should generate new key with the given params' do
@@ -41,7 +41,6 @@ RSpec.describe RsasController do
 
       post :create, params: { n: n, e: e, d: d }, format: :json
       expect(Rsa.count).to eq old_count + 1
-
     end
   end
 
