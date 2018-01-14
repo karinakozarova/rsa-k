@@ -30,14 +30,12 @@ RSpec.describe EncryptMessagesController do
       before :each do
         @key = OpenSSL::PKey::RSA.new 2048
         @rsa = Rsa.create(n: @key.params['n'], e: @key.params['e'], d: @key.params['d'])
-
-        encrypted = @key.public_encrypt('random long string with шано символи and numbers12134235534s')
-        encoded = Base64.strict_encode64(encrypted)
-        @message = @rsa.messages.create(content: encoded)
+        encr = @key.public_encrypt('random long string with шано символи and numbers12134235534s')
+        @mssg = @rsa.messages.create(content: Base64.strict_encode64(encr))
       end
 
       subject do
-        get :show, params: { rsa_id: @rsa.id, id: @message.id }, format: :json
+        get :show, params: { rsa_id: @rsa.id, id: @mssg.id }, format: :json
       end
 
       it 'should return json' do
