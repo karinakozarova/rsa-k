@@ -2,7 +2,6 @@ require "openssl"
 
 class DecryptMessagesController < ApplicationController
   before_action :set_rsa
-  before_action :set_message, only: :show
 
   def create
     key = OpenSSL::PKey::RSA.new 2048
@@ -28,10 +27,6 @@ private
 
   def set_rsa
     @rsa = Rsa.find params[:rsa_id]
-  end
-  
-  def set_message
-   # @message = @rsa.messages.find params[:id]
   end
 end
 
