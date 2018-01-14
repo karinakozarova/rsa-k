@@ -31,7 +31,7 @@ private
   end
   
   def set_message
-    @message = @rsa.messages.find params[:id]
+   # @message = @rsa.messages.find params[:id]
   end
 end
 
