@@ -25,8 +25,9 @@ RSpec.describe DecryptMessagesController do
 
       it 'is okay' do
         subject
-        (expect(response.status).to eq(200))
+        expect(response.status).to eq(200)
       end
+
     end
   end
 end

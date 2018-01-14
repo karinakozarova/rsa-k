@@ -12,21 +12,21 @@
 
 ActiveRecord::Schema.define(version: 20171219213238) do
 
-  create_table "messages", force: :cascade do |t|
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "rsa_id"
-    t.integer "rsas_id"
-    t.index ["rsas_id"], name: "index_messages_on_rsas_id"
+  create_table 'messages', force: :cascade do |t|
+    t.string 'content'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'rsa_id'
+    t.integer 'rsas_id'
+    t.index ['rsas_id'], name: 'index_messages_on_rsas_id'
   end
 
-  create_table "rsas", force: :cascade do |t|
-    t.string "n", limit: 8
-    t.string "e", limit: 8
-    t.string "d", limit: 8
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'rsas', force: :cascade do |t|
+    t.string 'n', limit: 8
+    t.string 'e', limit: 8
+    t.string 'd', limit: 8
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
 end

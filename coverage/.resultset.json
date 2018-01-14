@@ -393,6 +393,7 @@
         null,
         null,
         null,
+        null,
         null
       ],
       "/home/kari/ELSYS/GitHub/rsa-k/app/controllers/decrypt_messages_controller.rb": [
@@ -511,9 +512,9 @@
         null,
         null,
         1,
-        0,
-        0,
-        0,
+        3,
+        3,
+        3,
         null,
         null,
         1,
@@ -654,6 +655,6 @@
         null
       ]
     },
-    "timestamp": 1515942612
+    "timestamp": 1515947496
   }
 }
