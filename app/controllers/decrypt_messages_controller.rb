@@ -22,7 +22,7 @@ private
 
   def decode
     decoded = Base64.decode64(params[:message])
-    puts decoded
+    #puts decoded
     decoded
   end
 
