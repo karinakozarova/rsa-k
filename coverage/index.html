@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-01-14T16:40:38+02:00">2018-01-14T16:40:38+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-01-14T16:49:50+02:00">2018-01-14T16:49:50+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -63,7 +63,7 @@
       <tr>
         <td class="strong"><a href="#f230457d17424fe33009cac52cd44038b71cca49" class="src_link" title="app/controllers/decrypt_messages_controller.rb">app/controllers/decrypt_messages_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>32</td>
+        <td>31</td>
         <td>19</td>
         <td>19</td>
         <td>0</td>
@@ -410,7 +410,7 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">require &quot;openssl&quot;</code>
+          <code class="ruby">require &#39;openssl&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="2">
@@ -488,7 +488,7 @@
         <li class="covered" data-hits="1" data-linenumber="14">
           <span class="hits">1</span>
           
-          <code class="ruby">private</code>
+          <code class="ruby">  private</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
@@ -591,12 +591,6 @@
           
           
           <code class="ruby">end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="32">
-          
-          
-          <code class="ruby"></code>
         </li>
       
     </ol>
@@ -850,7 +844,7 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">require &quot;openssl&quot;</code>
+          <code class="ruby">require &#39;openssl&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="2">
@@ -892,13 +886,13 @@
         <li class="covered" data-hits="5" data-linenumber="8">
           <span class="hits">5</span>
           
-          <code class="ruby">    if params[:n] &amp;&amp; params[:e] &amp;&amp; params[:d] then set_ned key end</code>
+          <code class="ruby">    if params[:n] &amp;&amp; params[:e] &amp;&amp; params[:d] then set_ned(key) end</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="9">
           <span class="hits">5</span>
           
-          <code class="ruby">    @rsa = Rsa.create(n: key.params[&quot;n&quot;], e: key.params[&quot;e&quot;], d: key.params[&quot;d&quot;])</code>
+          <code class="ruby">    @rsa = Rsa.create(n: key.params[&#39;n&#39;], e: key.params[&#39;e&#39;], d: key.params[&#39;d&#39;])</code>
         </li>
       
         <li class="covered" data-hits="5" data-linenumber="10">
@@ -922,25 +916,25 @@
         <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
-          <code class="ruby">  def set_ned key</code>
+          <code class="ruby">  def set_ned(key)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="14">
           <span class="hits">1</span>
           
-          <code class="ruby">      key.n = params[:n].to_i</code>
+          <code class="ruby">    key.n = params[:n].to_i</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="15">
           <span class="hits">1</span>
           
-          <code class="ruby">      key.e = params[:e].to_i</code>
+          <code class="ruby">    key.e = params[:e].to_i</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
-          <code class="ruby">      key.d = params[:d].to_i</code>
+          <code class="ruby">    key.d = params[:d].to_i</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
@@ -3061,19 +3055,19 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">require &quot;spec_helper&quot;</code>
+          <code class="ruby">require &#39;spec_helper&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
-          <code class="ruby">require &quot;rails_helper&quot;</code>
+          <code class="ruby">require &#39;rails_helper&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">require &quot;openssl&quot;</code>
+          <code class="ruby">require &#39;openssl&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -3091,7 +3085,7 @@
         <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe &quot;POST /rsas/:id/decrypt_messages/&quot; do</code>
+          <code class="ruby">  describe &#39;POST /rsas/:id/decrypt_messages/&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="7">
@@ -3109,7 +3103,7 @@
         <li class="covered" data-hits="2" data-linenumber="9">
           <span class="hits">2</span>
           
-          <code class="ruby">      @rsa = Rsa.create(n: @key.params[&quot;n&quot;], e: @key.params[&quot;e&quot;], d: @key.params[&quot;d&quot;])</code>
+          <code class="ruby">      @rsa = Rsa.create(n: @key.params[&#39;n&#39;], e: @key.params[&#39;e&#39;], d: @key.params[&#39;d&#39;])</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
@@ -3121,7 +3115,7 @@
         <li class="covered" data-hits="2" data-linenumber="11">
           <span class="hits">2</span>
           
-          <code class="ruby">      encr = @key.public_encrypt(&quot;random long string with шано символи and numbers12134235534s&quot;)</code>
+          <code class="ruby">      encr = @key.public_encrypt(&#39;random long string with шано символи and numbers12134235534s&#39;)</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="12">
@@ -3151,7 +3145,7 @@
         <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
-          <code class="ruby">    describe &quot;POST&quot; do</code>
+          <code class="ruby">    describe &#39;POST&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="17">
@@ -3181,7 +3175,7 @@
         <li class="covered" data-hits="1" data-linenumber="21">
           <span class="hits">1</span>
           
-          <code class="ruby">      it &quot;should return json&quot; do</code>
+          <code class="ruby">      it &#39;should return json&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="22">
@@ -3193,7 +3187,7 @@
         <li class="covered" data-hits="1" data-linenumber="23">
           <span class="hits">1</span>
           
-          <code class="ruby">        expect(response.content_type).to eq &quot;application/json&quot;</code>
+          <code class="ruby">        expect(response.content_type).to eq &#39;application/json&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
@@ -3211,7 +3205,7 @@
         <li class="covered" data-hits="1" data-linenumber="26">
           <span class="hits">1</span>
           
-          <code class="ruby">      it &quot;is okay&quot; do</code>
+          <code class="ruby">      it &#39;is okay&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="27">
@@ -3645,25 +3639,25 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">require &quot;spec_helper&quot;</code>
+          <code class="ruby">require &#39;spec_helper&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
-          <code class="ruby">require &quot;rails_helper&quot;</code>
+          <code class="ruby">require &#39;rails_helper&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">require &quot;rubygems&quot;</code>
+          <code class="ruby">require &#39;rubygems&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">require &quot;json&quot;</code>
+          <code class="ruby">require &#39;json&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="5">
@@ -3681,7 +3675,7 @@
         <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe &quot;POST&quot; do</code>
+          <code class="ruby">  describe &#39;POST&#39; do</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="8">
@@ -3717,7 +3711,7 @@
         <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;should generate new key and return its id&quot; do</code>
+          <code class="ruby">    it &#39;should generate new key and return its id&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="14">
@@ -3741,7 +3735,7 @@
         <li class="covered" data-hits="1" data-linenumber="17">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(response.content_type).to eq &quot;application/json&quot;</code>
+          <code class="ruby">      expect(response.content_type).to eq &#39;application/json&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="18">
@@ -3759,7 +3753,7 @@
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;should return key id as JSON&quot; do</code>
+          <code class="ruby">    it &#39;should return key id as JSON&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="21">
@@ -3771,7 +3765,7 @@
         <li class="covered" data-hits="1" data-linenumber="22">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(response.content_type).to eq &quot;application/json&quot;</code>
+          <code class="ruby">      expect(response.content_type).to eq &#39;application/json&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
@@ -3789,7 +3783,7 @@
         <li class="covered" data-hits="1" data-linenumber="25">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;should return json&quot; do</code>
+          <code class="ruby">    it &#39;should return json&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="26">
@@ -3801,7 +3795,7 @@
         <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(response.content_type).to eq &quot;application/json&quot;</code>
+          <code class="ruby">      expect(response.content_type).to eq &#39;application/json&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="28">
@@ -3819,7 +3813,7 @@
         <li class="covered" data-hits="1" data-linenumber="30">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;is okay 200&quot; do</code>
+          <code class="ruby">    it &#39;is okay 200&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="31">
@@ -3903,7 +3897,7 @@
         <li class="never" data-hits="" data-linenumber="44">
           
           
-          <code class="ruby">      </code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="45">
@@ -3927,7 +3921,7 @@
         <li class="covered" data-hits="1" data-linenumber="48">
           <span class="hits">1</span>
           
-          <code class="ruby">  describe &quot;GET&quot; do</code>
+          <code class="ruby">  describe &#39;GET&#39; do</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="49">
@@ -3945,7 +3939,7 @@
         <li class="covered" data-hits="2" data-linenumber="51">
           <span class="hits">2</span>
           
-          <code class="ruby">      get :show, params: { id: &quot;1&quot; }, format: :json</code>
+          <code class="ruby">      get :show, params: { id: &#39;1&#39; }, format: :json</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="52">
@@ -3963,7 +3957,7 @@
         <li class="covered" data-hits="1" data-linenumber="54">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;should return json&quot; do</code>
+          <code class="ruby">    it &#39;should return json&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="55">
@@ -3975,7 +3969,7 @@
         <li class="covered" data-hits="1" data-linenumber="56">
           <span class="hits">1</span>
           
-          <code class="ruby">      expect(response.content_type).to eq &quot;application/json&quot;</code>
+          <code class="ruby">      expect(response.content_type).to eq &#39;application/json&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="57">
@@ -3993,7 +3987,7 @@
         <li class="covered" data-hits="1" data-linenumber="59">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;is okay 200&quot; do</code>
+          <code class="ruby">    it &#39;is okay 200&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="60">

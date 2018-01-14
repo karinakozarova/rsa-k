@@ -426,7 +426,6 @@
         1,
         2,
         null,
-        null,
         null
       ],
       "/home/kari/ELSYS/GitHub/rsa-k/app/controllers/application_controller.rb": [
@@ -655,6 +654,6 @@
         null
       ]
     },
-    "timestamp": 1515940838
+    "timestamp": 1515941390
   }
 }
