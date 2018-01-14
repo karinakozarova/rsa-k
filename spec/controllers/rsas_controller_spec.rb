@@ -1,33 +1,33 @@
-require "spec_helper"
-require "rails_helper"
-require "rubygems"
-require "json"
+require 'spec_helper'
+require 'rails_helper'
+require 'rubygems'
+require 'json'
 
 RSpec.describe RsasController do
-  describe "POST" do
+  describe 'POST' do
 
     subject do
       post :create, format: :json
     end
 
-    it "should generate new key and return its id" do
+    it 'should generate new key and return its id' do
       old_count = Rsa.count
       subject
       expect(Rsa.count).to eq old_count + 1
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
     end
 
-    it "should return key id as JSON" do
+    it 'should return key id as JSON' do
       subject
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
     end
 
-    it "should return json" do
+    it 'should return json' do
       subject
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
     end
 
-    it "is okay 200" do
+    it 'is okay 200' do
       subject
       (expect(response.status).to eq(200))
     end
@@ -41,22 +41,22 @@ RSpec.describe RsasController do
 
       post :create, params: { n: n, e: e, d: d }, format: :json
       expect(Rsa.count).to eq old_count + 1
-      
+
     end
   end
 
-  describe "GET" do
+  describe 'GET' do
 
     subject do
-      get :show, params: { id: "1" }, format: :json
+      get :show, params: { id: '1' }, format: :json
     end
 
-    it "should return json" do
+    it 'should return json' do
       subject
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
     end
 
-    it "is okay 200" do
+    it 'is okay 200' do
       subject
       (expect(response.status).to eq(200))
     end

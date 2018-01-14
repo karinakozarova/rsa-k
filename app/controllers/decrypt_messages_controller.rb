@@ -1,4 +1,4 @@
-require "openssl"
+require 'openssl'
 
 class DecryptMessagesController < ApplicationController
   before_action :set_rsa
@@ -11,7 +11,7 @@ class DecryptMessagesController < ApplicationController
     respond_to :json
   end
 
-private
+  private
 
   def set_ned key
     key.n = @rsa.n.to_i
@@ -29,4 +29,3 @@ private
     @rsa = Rsa.find params[:rsa_id]
   end
 end
-
