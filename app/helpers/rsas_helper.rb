@@ -1,5 +1,5 @@
 module RsasHelper
-
+=begin
 class RSA
   @n
   @e
@@ -110,4 +110,5 @@ class RSA
     (p - 1).lcm(q - 1)
   end
 end
+=end
 end
